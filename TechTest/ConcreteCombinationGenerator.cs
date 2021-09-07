@@ -4,19 +4,20 @@ using System.Linq;
 
 namespace TechTest
 {
-    public class CombinationGenerator
+    public class ConcreteCombinationGenerator : ICombinationGenerator
     {
-        private readonly int returnSize;
-        private readonly List<int> numberPool;
-        private readonly Random rand;
+        private int returnSize;
+        private List<int> numberPool;
+        private Random rand;
 
-        public CombinationGenerator(int minValue, int maxValue, int returnSize)
+        private void GeneratePool(int minValue, int maxValue, int returnSize)
         {
             // check valid parameters
             if (maxValue < minValue)
             {
                 throw new ArgumentException("max value must be greater than min value", nameof(maxValue) + ": " + maxValue + " " + nameof(minValue) + ": " + minValue);
-            }else if (returnSize > maxValue - minValue)
+            }
+            else if (returnSize > maxValue - minValue)
             {
                 throw new ArgumentException("return Size cannot be greater than range");
             }
@@ -25,7 +26,7 @@ namespace TechTest
 
             /*generate number pool with ABSOLUTE values. If there are both negative and positive number 
              * in the range using absolute values will cause dupliates in the pool.  Restrict the range to remove duplicates*/
-             if (minValue < 0 && maxValue > 0)
+            if (minValue < 0 && maxValue > 0)
             {
                 if (Math.Abs(minValue) > Math.Abs(maxValue))
                 {
@@ -36,7 +37,7 @@ namespace TechTest
                     minValue = 0;
                 }
             }
-     
+
             numberPool = new List<int>();
             for (int i = minValue; i <= maxValue; i++)
             {
@@ -54,15 +55,17 @@ namespace TechTest
             return numberPool.OrderBy(a => rand.Next()).Take(returnSize).ToList();
         }
 
-        public List<int> GetNewAscending()
+        public List<int> GetAscendingCombination(int minValue, int maxValue, int returnSize)
         {
+            GeneratePool(minValue, maxValue, returnSize);
             var selectedNumbers = GetCombination();
             selectedNumbers.Sort();
             return selectedNumbers;
         }
 
-        public List<int> GetNewDescending()
+        public List<int> GetDescendingCombination(int minValue, int maxValue, int returnSize)
         {
+            GeneratePool(minValue, maxValue, returnSize);
             var selectedNumbers = GetCombination();
             selectedNumbers.Sort((a, b) => b.CompareTo(a));   // sort desending
             return selectedNumbers;

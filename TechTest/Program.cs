@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace TechTest
 {
@@ -8,7 +9,15 @@ namespace TechTest
         {
             int min = 1; int max = 10; int combinationLength = 5; int noCombinations = 5;
 
-            new BulkCombinationsGenerator(min, max, combinationLength, noCombinations).Print();
+            //setup our DI
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IBulkCombinationsGenerator, BulkCombinationsGenerator>()
+                .AddSingleton<ICombinationGenerator, ConcreteCombinationGenerator>()
+                .BuildServiceProvider();
+
+            //do the actual work here
+            var bar = serviceProvider.GetService<IBulkCombinationsGenerator>();
+            bar.PrintCombaintions(min, max, combinationLength, noCombinations);
         }
     }
 }

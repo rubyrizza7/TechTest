@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTest;
 
 namespace TechTest_Tests
-{
+{ /*
     [TestClass]
     public class BulkCombinationGeneratorTests
     {
@@ -56,5 +56,5 @@ namespace TechTest_Tests
         }
 
 
-    }
+    }*/
 }

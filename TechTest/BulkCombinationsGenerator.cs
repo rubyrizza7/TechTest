@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace TechTest
 {
-    public class BulkCombinationsGenerator
-    { 
-        private readonly CombinationGenerator combinationGenerator;
-        private readonly int noCombinations;
-        private List<List<int>> combinations;
+    public class BulkCombinationsGenerator : IBulkCombinationsGenerator
+    {
 
-        public BulkCombinationsGenerator(int minValue, int maxValue, int combinationLength, int noCombinations)
+        private readonly ICombinationGenerator combinationGenerator;
+       
+        public BulkCombinationsGenerator(ICombinationGenerator service)
+        {
+            combinationGenerator = service;
+        }
+
+        public List<List<int>> GetCombinations(int minValue, int maxValue, int combinationLength, int noCombinations)
         {
             // check valid parameters
             if (noCombinations < 1)
@@ -19,30 +23,25 @@ namespace TechTest
 
 
             // initialise
-            this.noCombinations = noCombinations;
-            combinations = new List<List<int>>();
-
-            // create a combination generator
-            combinationGenerator = new CombinationGenerator(minValue, maxValue, combinationLength);
+            List<List<int>> combinations = new List<List<int>>();
 
             // generate ascending combinations
             for (var i = 1; i <= noCombinations - 1; i++)
             {
-                combinations.Add(combinationGenerator.GetNewAscending());
+                combinations.Add(combinationGenerator.GetAscendingCombination(minValue, maxValue, combinationLength));
             }
 
-            // generate final descending combination
-            combinations.Add(combinationGenerator.GetNewDescending());
+             // generate final descending combination
+             combinations.Add(combinationGenerator.GetDescendingCombination(minValue, maxValue, combinationLength));
+            
 
-        }
-
-        public List<List<int>> GetCombinations()
-        { 
             return combinations;
         }
-        public void Print()
+
+
+        public void PrintCombaintions(int minValue, int maxValue, int combinationLength, int noCombinations)
         {
-            foreach (List<int> combination in combinations)
+            foreach (List<int> combination in GetCombinations(minValue, maxValue, combinationLength, noCombinations))
             {
                 Console.WriteLine(string.Join(",", combination));
             }
