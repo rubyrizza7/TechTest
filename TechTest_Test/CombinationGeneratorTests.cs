@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TechTest;
 
 namespace TechTest_Tests
-{/*
+{
     [TestClass]
     public class CombinationGeneratorTests
     {
@@ -11,14 +11,14 @@ namespace TechTest_Tests
         public void Create_InvalidRange_Throws()
         {
             // min value larger than max value
-            Assert.ThrowsException<System.ArgumentException>(() => new ConcreteCombinationGenerator(2, 1, 1));
+            Assert.ThrowsException<System.ArgumentException>(() => new ConcreteCombinationGenerator().GetAscendingCombination(2, 1, 1));
         }
 
         [TestMethod]
         public void Create_InvalidReturnSize_Throws()
         {
             // set combination length greater than range
-            Assert.ThrowsException<System.ArgumentException>(() => new ConcreteCombinationGenerator(1, 10, 11));
+            Assert.ThrowsException<System.ArgumentException>(() => new ConcreteCombinationGenerator().GetAscendingCombination(1, 10, 11));
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace TechTest_Tests
         {
             int min = 1; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewAscending();
+            var combination = new ConcreteCombinationGenerator().GetAscendingCombination(min, max, combinationLength);
 
             // assert returned length is as expected
             Assert.IsTrue(combination.Count == combinationLength);
@@ -37,7 +37,7 @@ namespace TechTest_Tests
         {
             int min = -10; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewAscending();
+            var combination = new ConcreteCombinationGenerator().GetAscendingCombination(min, max, combinationLength);
 
             // assert does not contain repetitions
             Assert.IsFalse(ContainsDuplicates(combination));
@@ -48,7 +48,7 @@ namespace TechTest_Tests
         {
             int min = 1; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewAscending();
+            var combination = new ConcreteCombinationGenerator().GetAscendingCombination(min, max, combinationLength);
 
             // asserts does is sorted in acending order
             Assert.IsTrue(IsSortedAcending(combination));
@@ -59,7 +59,7 @@ namespace TechTest_Tests
         {
             int min = -10; int max = -1; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewAscending();
+            var combination = new ConcreteCombinationGenerator().GetAscendingCombination(min, max, combinationLength);
 
             // assert does not contain negatives
             Assert.IsFalse(ContainsNegativeValue(combination));
@@ -70,7 +70,7 @@ namespace TechTest_Tests
         {
             int min = 1; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewDescending();
+            var combination = new ConcreteCombinationGenerator().GetDescendingCombination(min, max, combinationLength);
 
             // assert returned length is as expected
             Assert.IsTrue(combination.Count == combinationLength);
@@ -81,7 +81,7 @@ namespace TechTest_Tests
         {
             int min = 1; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewDescending();
+            var combination = new ConcreteCombinationGenerator().GetDescendingCombination(min, max, combinationLength);
 
             // assert does not contain repetitions
             Assert.IsFalse(ContainsDuplicates(combination));
@@ -92,7 +92,7 @@ namespace TechTest_Tests
         {
             int min = 1; int max = 10; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewDescending();
+            var combination = new ConcreteCombinationGenerator().GetDescendingCombination(min, max, combinationLength);
 
             // asserts does is sorted in acending order
             Assert.IsTrue(IsSortedDescending(combination));
@@ -103,7 +103,7 @@ namespace TechTest_Tests
         {
             int min = -10; int max = -1; int combinationLength = 5;
 
-            var combination = new ConcreteCombinationGenerator(min, max, combinationLength).GetNewDescending();
+            var combination = new ConcreteCombinationGenerator().GetDescendingCombination(min, max, combinationLength);
 
             // assert does not contain negatives
             Assert.IsFalse(ContainsNegativeValue(combination));
@@ -164,5 +164,5 @@ namespace TechTest_Tests
 
             return true;
         }
-    }*/
+    }
 }

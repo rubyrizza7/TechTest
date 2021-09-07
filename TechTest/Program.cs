@@ -16,8 +16,8 @@ namespace TechTest
                 .BuildServiceProvider();
 
             //do the actual work here
-            var bar = serviceProvider.GetService<IBulkCombinationsGenerator>();
-            bar.PrintCombaintions(min, max, combinationLength, noCombinations);
+            var generator = serviceProvider.GetService<IBulkCombinationsGenerator>();
+            generator.PrintCombaintions(min, max, combinationLength, noCombinations);
         }
     }
 }
