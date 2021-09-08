@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TechTest": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Ruby Rizza\\source\\repos\\TechTest\\TechTest"
+    }
+  }
+}

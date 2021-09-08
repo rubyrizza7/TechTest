@@ -39,12 +39,16 @@ namespace TechTest
         }
 
 
-        public void PrintCombaintions(int minValue, int maxValue, int combinationLength, int noCombinations)
+        public string GetCombinationsAsString(int minValue, int maxValue, int combinationLength, int noCombinations)
         {
+            List<String> lines = new List<string>();
+
             foreach (List<int> combination in GetCombinations(minValue, maxValue, combinationLength, noCombinations))
             {
-                Console.WriteLine(string.Join(",", combination));
+                lines.Add(string.Join(",", combination));
             }
+
+            return string.Join("\n", lines);
         }
 
     }
