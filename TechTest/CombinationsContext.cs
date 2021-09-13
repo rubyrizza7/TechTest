@@ -10,7 +10,7 @@ namespace TechTest
         public string DbPath { get; private set; }
         public DbSet<Result> Results { get; set; }
 
-        // for not in memory
+        // for using sqlite
         /*
         public CombinationsContext()
         {
@@ -19,7 +19,7 @@ namespace TechTest
             DbPath = $"{path}{System.IO.Path.DirectorySeparatorChar}combinations.db";
         }
         
-         protected override void OnConfiguring(DbContextOptionsBuilder options)
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");*/
 
         // for in memory

@@ -6,9 +6,8 @@ namespace TechTest
 {
     public class Result
     {
-        internal string resultId;
-
-        public int ResultId { get; set; }
+   
+        public int resultId { get; set; }
         public string combinations { get; set; }
     }
 }

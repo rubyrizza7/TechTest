@@ -37,11 +37,11 @@ namespace TechTest
                 // Read
                 Console.WriteLine("Reading all results in table");
                 var results = db.Results
-                    .OrderBy(b => b.ResultId);
+                    .OrderBy(b => b.resultId);
 
                 foreach (var result in results)
                 {
-                    Console.WriteLine("\nID:" +  result.ResultId + "\nCombinations:\n" + result.combinations);
+                    Console.WriteLine("\nID:" +  result.resultId + "\nCombinations:\n" + result.combinations);
                 }
 
             }*/
